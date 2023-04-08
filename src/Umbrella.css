@@ -1,0 +1,110 @@
+body {
+    background-color: rgb(217, 234, 234);
+}
+
+.umbrella-img {
+    width: 80%;
+    height: 700px;
+    /* margin-top: 40px; */
+    position: absolute;
+}
+
+.loading-animation{
+    width: 8%;
+    height: 700px;
+    margin-top: 40px;
+    position: absolute;
+    animation: rotation 2s infinite ease-in-out;
+}
+
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+
+.image-div {
+    width: 50%;
+    padding: 50px;
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+
+}
+
+.second-div {
+    width: 50%;
+}
+
+.second-div p {
+    /* background-color:black ; */
+    font-size: 50px;
+    margin-left: 20px;
+}
+
+.chooseColor {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.chooseColor div {
+    margin-left: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+
+}
+
+.file-upload {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    background-color: #2674c2;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 400px;
+    margin-left: 10px;
+}
+
+.file-upload input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 30px;
+
+}
+
+.file-upload label {
+    display: inline-block;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    font-weight: 100;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.logo {
+    position: absolute;
+     width: 90px; 
+     top: 100%;  
+     left: 40%;
+}
+
+.color-tag{
+    cursor: pointer;
+}
+
+.color-tag:hover{
+    box-shadow: 0px 0px 30px #88888862;
+}

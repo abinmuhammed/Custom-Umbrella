@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>umbrella</title>
+    <link rel="stylesheet" href="/src/Umbrella.css" />
+  </head>
+  <body>
+    <div class="main-div" style="display: flex">
+      <div class="image-div">
+        <img id="img" class="umbrella-img" src="images/pink.png" alt="umbrellalink" />-->
+        <img
+          class="logo"
+          id="logopreview"
+          style="display: none"
+          src=""
+          alt=""
+        />
+      </div>
+
+      <div class="second-div">
+        <div class="Heading" style="margin-top: 30%">
+          <p>Custom Umbrella</p>
+        </div>
+        <div class="chooseColor">
+          <div
+            class="color-tag"
+            onclick="handleimage('pink')"
+            style="background-color: pink"
+          ></div>
+          <div
+            class="color-tag"
+            onclick="handleimage('blue')"
+            style="background-color: blue"
+          ></div>
+          <div
+            class="color-tag"
+            onclick="handleimage('yellow')"
+            style="background-color: yellow"
+          ></div>
+        </div>
+        <div>
+          <h2 style="margin-left: 20px">Customize your Umbrella</h2>
+        </div>
+        <div>
+          <p style="font-size: x-large; font-weight: 100">
+            Upload a logo for an instant Preview.
+          </p>
+        </div>
+        <div>
+          <p style="font-weight: 100; font-size: 15px">
+            .png and .jpg files only.Max file size is 5MB
+          </p>
+        </div>
+
+        <div class="file-upload">
+          <img src="/src/images/upload_icon.svg" alt="" />
+          <label for="my-file-input">UPLOAD LOGO</label>
+          <input
+            type="file"
+            id="my-file-input"
+            onchange="previewImage()"
+            name="file"
+          />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function handleimage(color) {
+        const image = document.getElementById("img");
+        image.classList.remove("umbrella-img");
+        image.classList.add("loading-animation");   
+        image.src = 'images/loader_icon.svg'
+        setTimeout(() => {
+            image.classList.add("umbrella-img");
+            image.classList.remove("loading-animation");
+            image.src = `images/${color}.png`;
+        }, 2000);
+      }
+
+      function previewImage() {
+        var preview = document.getElementById("logopreview");
+        var file = document.getElementById("my-file-input").files[0];
+        var reader = new FileReader();
+
+        reader.onloadend = function () {
+          preview.src = reader.result;
+          preview.style.display = "block";
+        };
+
+        if (file) {
+          reader.readAsDataURL(file);
+        } else {
+          preview.src = "";
+          preview.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>
