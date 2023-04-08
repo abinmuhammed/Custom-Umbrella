@@ -98,7 +98,7 @@ body {
     position: absolute;
      width: 90px; 
      top: 100%;  
-     left: 40%;
+     /* left: 40%; */
 }
 
 .color-tag{
