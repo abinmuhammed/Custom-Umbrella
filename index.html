@@ -1,104 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>umbrella</title>
-    <link rel="stylesheet" href="Umbrella.css" />
-    <link rel="shortcut icon" href="/images/pink.png" type="image/x-icon">
-  </head>
-  <body>
-    <div class="main-div" style="display: flex">
-      <div class="image-div">
-        <img id="img" class="umbrella-img" src="images/pink.png" alt="umbrellalink" />-->
-        <img
-          class="logo"
-          id="logopreview"
-          style="display: none"
-          src=""
-          alt=""
-        />
-      </div>
 
-      <div class="second-div">
-        <div class="Heading" style="margin-top: 30%">
-          <p>Custom Umbrella</p>
-        </div>
-        <div class="chooseColor">
-          <div
-            class="color-tag"
-            onclick="handleimage('pink')"
-            style="background-color: pink"
-          ></div>
-          <div
-            class="color-tag"
-            onclick="handleimage('blue')"
-            style="background-color: blue"
-          ></div>
-          <div
-            class="color-tag"
-            onclick="handleimage('yellow')"
-            style="background-color: yellow"
-          ></div>
-        </div>
-        <div>
-          <h2 style="margin-left: 20px">Customize your Umbrella</h2>
-        </div>
-        <div>
-          <p style="font-size: x-large; font-weight: 100">
-            Upload a logo for an instant Preview.
-          </p>
-        </div>
-        <div>
-          <p style="font-weight: 100; font-size: 15px">
-            .png and .jpg files only.Max file size is 5MB
-          </p>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>umbrella</title>
+  <link rel="stylesheet" href="Umbrella.css" />
+  <link rel="shortcut icon" href="/images/pink.png" type="image/x-icon">
+</head>
 
-        <div class="file-upload">
-          <img src="/src/images/upload_icon.svg" alt="" />
-          <label for="my-file-input">UPLOAD LOGO</label>
-          <input
-            type="file"
-            id="my-file-input"
-            onchange="previewImage()"
-            name="file"
-          />
-        </div>
-      </div>
+<body>
+  <div class="main-div" style="display: flex">
+    <div class="image-div">
+      <img id="img" class="umbrella-img" onload="imageLoaded()" src="images/pink.png" alt="umbrellalink" />
+      <img id="loading-img" class="loading-animation" src="images/loader_icon.svg" alt="loading..." />
+      <img class="logo" id="logopreview" style="display: none" src="" alt="" />
     </div>
 
-    <script>
-      function handleimage(color) {
-        const image = document.getElementById("img");
-        image.classList.remove("umbrella-img");
-        image.classList.add("loading-animation");   
-        image.src = 'images/loader_icon.svg'
-        setTimeout(() => {
-            image.classList.add("umbrella-img");
-            image.classList.remove("loading-animation");
-            image.src = `images/${color}.png`;
-        }, 2000);
+    <div class="second-div">
+      <div class="Heading" style="margin-top: 30%">
+        <p>Custom Umbrella</p>
+      </div>
+      <div class="chooseColor">
+        <div class="color-tag" onclick="handleimage('pink')" style="background-color: pink"></div>
+        <div class="color-tag" onclick="handleimage('blue')" style="background-color: blue"></div>
+        <div class="color-tag" onclick="handleimage('yellow')" style="background-color: yellow"></div>
+      </div>
+      <div>
+        <h2 style="margin-left: 20px">Customize your Umbrella</h2>
+      </div>
+      <div>
+        <p style="font-size: x-large; font-weight: 100">
+          Upload a logo for an instant Preview.
+        </p>
+      </div>
+      <div>
+        <p style="font-weight: 100; font-size: 15px">
+          .png and .jpg files only.Max file size is 5MB
+        </p>
+      </div>
+
+      <div class="file-upload">
+        <img src="/src/images/upload_icon.svg" alt="" />
+        <label for="my-file-input">UPLOAD LOGO</label>
+        <input type="file" id="my-file-input" onchange="previewImage()" name="file" />
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const load = document.getElementById('loading-img')
+    const image = document.getElementById("img");
+    load.style.display = 'none'
+
+    function handleimage(color) {
+      load.style.display = 'block'
+      image.style.display = 'none'
+      setTimeout(() => {
+        image.src = `images/${color}.png`;
+        image.style.opacity = 0;
+      }, 2000);
+    }
+
+    function imageLoaded() {
+      console.log('image loaded');
+      setTimeout(() => {
+        image.style.opacity = 1;
+      }, 10);
+      image.style.display = 'block'
+      load.style.display = 'none'
+    }
+
+    function previewImage() {
+      var preview = document.getElementById("logopreview");
+      var file = document.getElementById("my-file-input").files[0];
+      var reader = new FileReader();
+
+      reader.onloadend = function () {
+        preview.src = reader.result;
+        preview.style.display = "block";
+      };
+
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        preview.src = "";
+        preview.style.display = "none";
       }
+    }
+  </script>
+</body>
 
-      function previewImage() {
-        var preview = document.getElementById("logopreview");
-        var file = document.getElementById("my-file-input").files[0];
-        var reader = new FileReader();
-
-        reader.onloadend = function () {
-          preview.src = reader.result;
-          preview.style.display = "block";
-        };
-
-        if (file) {
-          reader.readAsDataURL(file);
-        } else {
-          preview.src = "";
-          preview.style.display = "none";
-        }
-      }
-    </script>
-  </body>
 </html>

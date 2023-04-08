@@ -4,27 +4,28 @@ body {
 
 .umbrella-img {
     width: 80%;
-    height: 700px;
-    /* margin-top: 40px; */
+    margin-top: 40px;
     position: absolute;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
 }
 
-.loading-animation{
+.loading-animation {
     width: 8%;
     height: 700px;
-    margin-top: 40px;
     position: absolute;
     animation: rotation 2s infinite ease-in-out;
 }
 
 @keyframes rotation {
     from {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
+
     to {
-      transform: rotate(359deg);
+        transform: rotate(359deg);
     }
-  }
+}
 
 .image-div {
     width: 50%;
@@ -96,15 +97,15 @@ body {
 
 .logo {
     position: absolute;
-     width: 90px; 
-     top: 100%;  
-     /* left: 40%; */
+    width: 90px;
+    top: 100%;
+    /* left: 40%; */
 }
 
-.color-tag{
+.color-tag {
     cursor: pointer;
 }
 
-.color-tag:hover{
+.color-tag:hover {
     box-shadow: 0px 0px 30px #88888862;
 }
